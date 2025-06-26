@@ -1,4 +1,4 @@
-namespace TradeWise.Web.Models;
+namespace TradeWise.API.Models;
 
 public class ErrorViewModel
 {
