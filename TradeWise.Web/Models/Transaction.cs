@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TradeWise.API.Models
+namespace TradeWise.Web.Models
 {
     public class Transaction
     {
