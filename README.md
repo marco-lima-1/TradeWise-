@@ -26,6 +26,7 @@ Desenvolvido com o objetivo de demonstrar **competências de desenvolvedor pleno
 - **Real-time communication** com SignalR
 - **Caching estratégico** com Redis
 - **Testes automatizados** robustos
+- **Git Flow profissional** com branches estruturadas
 
 ---
 
@@ -57,6 +58,12 @@ Desenvolvido com o objetivo de demonstrar **competências de desenvolvedor pleno
 - **CoinGecko API** - Cotações de criptomoedas
 - **Binance API** - Dados de mercado (opcional)
 
+### **Desenvolvimento**
+- **Git Flow** - Estratégia de branches profissional
+- **Conventional Commits** - Padronização de commits
+- **Pull Requests** - Code review obrigatório
+- **Azure DevOps** - CI/CD (planejado)
+
 ---
 
 ## 🏗️ **Arquitetura do Sistema**
@@ -79,6 +86,34 @@ Desenvolvido com o objetivo de demonstrar **competências de desenvolvedor pleno
 │   (Cache)       │    │   (SQL Server)  │    │   (Messages)    │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
+
+---
+
+## 🌳 **Git Flow Strategy**
+
+Este projeto segue um **Git Flow profissional** com branches estruturadas:
+
+### **Branches Principais**
+- **`main`** 🟢 - Código de produção, sempre estável
+- **`develop`** 🟡 - Branch de desenvolvimento e integração
+
+### **Branches de Funcionalidade**
+- **`feature/*`** 🔵 - Novas funcionalidades
+- **`hotfix/*`** 🔴 - Correções críticas de produção
+
+### **Workflow de Exemplo**
+```bash
+# Criar nova funcionalidade
+git checkout develop
+git checkout -b feature/dashboard-implementation
+
+# Desenvolver e commitar
+git commit -m "✨ feat(dashboard): add real-time price charts"
+
+# Abrir Pull Request: develop ← feature/dashboard-implementation
+```
+
+📚 **Veja o [CONTRIBUTING.md](CONTRIBUTING.md) para o guia completo!**
 
 ---
 
@@ -142,8 +177,8 @@ Desenvolvido com o objetivo de demonstrar **competências de desenvolvedor pleno
 
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/marco-lima-1/TradeWise-.git
-cd TradeWise-
+git clone https://github.com/marco-lima-1/TradeWise.git
+cd TradeWise
 ```
 
 2. **Configure a connection string**
@@ -190,7 +225,9 @@ TradeWise/
 │   └── 📁 wwwroot/            # Assets estáticos
 ├── 📁 TradeWise.Tests/        # Testes unitários
 ├── 📁 scripts/                # Scripts de banco
-└── 📄 README.md               # Documentação
+├── 📄 README.md               # Documentação
+├── 📄 CONTRIBUTING.md         # Guia de contribuição
+└── 📄 LICENSE                 # Licença MIT
 ```
 
 ---
@@ -220,6 +257,7 @@ dotnet test --collect:"XPlat Code Coverage"
 - [x] Configuração de banco de dados
 - [x] Sistema de autenticação
 - [x] Modelos de domínio
+- [x] Git Flow implementado
 
 ### **Fase 2 - Core Features** 🚧
 - [x] Integração com CoinGecko API
@@ -253,12 +291,20 @@ Este projeto foi desenvolvido para demonstrar:
 ✅ **Message Queues**: RabbitMQ para desacoplamento  
 ✅ **Testing**: Testes unitários e de integração  
 ✅ **External APIs**: Integração robusta com APIs terceiras  
+✅ **Git Flow**: Workflow profissional de desenvolvimento  
+✅ **Documentation**: Documentação técnica completa  
 
 ---
 
 ## 🤝 **Contribuições**
 
-Este é um projeto pessoal para fins de aprendizado e demonstração de habilidades. Sugestões e feedback são sempre bem-vindos!
+Este é um projeto pessoal para fins de aprendizado e demonstração de habilidades. 
+
+Para contribuir, siga nosso [Guia de Contribuição](CONTRIBUTING.md) que inclui:
+- Convenções de commit
+- Estratégia de branches
+- Templates de Pull Request
+- Code review guidelines
 
 ---
 
