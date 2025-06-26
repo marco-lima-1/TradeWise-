@@ -1,0 +1,154 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Dashboard - TradeWise";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h1>📊 Dashboard</h1>
+        <p class="text-muted">Bem-vindo de volta, @Model.User.FullName!</p>
+    </div>
+</div>
+
+@* ← CARDS DE RESUMO *@
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">💰 Saldo</h5>
+                <h3>@Model.User.Balance.ToString("C")</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">📈 Portfolio</h5>
+                <h3>@Model.TotalPortfolioValue.ToString("C")</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h5 class="card-title">💼 P&L</h5>
+                <h3 class="@(Model.TotalProfitLoss >= 0 ? "text-white" : "text-warning")">
+                    @Model.TotalProfitLoss.ToString("C")
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-secondary text-white">
+            <div class="card-body">
+                <h5 class="card-title">👤 Membro desde</h5>
+                <p>@Model.User.MemberSince.ToString("dd/MM/yyyy")</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ← SEÇÃO DE ASSETS DISPONÍVEIS *@
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>💱 Criptomoedas Disponíveis</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Moeda</th>
+                                <th>Preço Atual</th>
+                                <th>Variação 24h</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var asset in Model.Assets)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@asset.Symbol</strong><br>
+                                        <small class="text-muted">@asset.Name</small>
+                                    </td>
+                                    <td>@asset.CurrentPrice.ToString("C")</td>
+                                    <td>
+                                        <span class="badge bg-success">+2.5%</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">🛒 Comprar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ← SEÇÃO DE ORDENS RECENTES *@
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>📋 Ordens Recentes</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.RecentOrders.Count > 0)
+                {
+                    @foreach (var order in Model.RecentOrders)
+                    {
+                        <div class="border-bottom pb-2 mb-2">
+                            <strong>@order.Asset.Symbol</strong>
+                            <span class="badge bg-@(order.Type == 1 ? "success" : "danger")">
+                                @(order.Type == 1 ? "COMPRA" : "VENDA")
+                            </span>
+                            <br>
+                            <small class="text-muted">@order.CreatedAt.ToString("dd/MM HH:mm")</small>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">Nenhuma ordem ainda.</p>
+                    <a href="#" class="btn btn-primary btn-sm">🚀 Primeira Ordem</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ← INFORMAÇÕES DO USUÁRIO (DEBUGGING) *@
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6>🔍 Informações do Identity (Debug)</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Identity Autenticado:</strong> @User.Identity!.IsAuthenticated<br>
+                        <strong>Nome do Usuário:</strong> @User.Identity.Name<br>
+                        <strong>Email:</strong> @Model.User.Email<br>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>User ID:</strong> @User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value<br>
+                        <strong>Claims:</strong> @User.Claims.Count()<br>
+                        <strong>Data de Criação:</strong> @Model.User.MemberSince.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // JavaScript para interações do dashboard
+        console.log('Dashboard carregado para usuário: @Model.User.FullName');
+    </script>
+} 

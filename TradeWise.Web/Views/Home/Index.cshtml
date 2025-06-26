@@ -1,8 +1,77 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "TradeWise - Plataforma de Trading";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (User.Identity!.IsAuthenticated)
+{
+    @* ← USUÁRIO LOGADO - Redirecionar para Dashboard *@
+    <div class="text-center">
+        <h1 class="display-4">💰 Bem-vindo de volta!</h1>
+        <p class="lead">Olá, @User.Identity.Name! Continue gerenciando seu portfólio.</p>
+        <a asp-controller="Dashboard" asp-action="Index" class="btn btn-primary btn-lg">📊 Ir para Dashboard</a>
+    </div>
+}
+else
+{
+    @* ← USUÁRIO NÃO LOGADO - Landing Page *@
+    <div class="hero-section text-center py-5">
+        <div class="container">
+            <h1 class="display-3 fw-bold">💰 TradeWise</h1>
+            <p class="lead fs-4">A plataforma mais intuitiva para trading de criptomoedas</p>
+            <p class="text-muted">Comece com $10.000 virtuais e aprenda a investir sem risco!</p>
+            
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a asp-controller="Account" asp-action="Register" class="btn btn-success btn-lg">
+                    📝 Criar Conta Grátis
+                </a>
+                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary btn-lg">
+                    🔐 Já tenho conta
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @* ← FEATURES SECTION *@
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h1>📊</h1>
+                        <h5>Dashboard Intuitivo</h5>
+                        <p>Visualize seu portfólio, P&L e histórico de ordens em tempo real.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h1>🔒</h1>
+                        <h5>100% Seguro</h5>
+                        <p>Autenticação robusta com ASP.NET Identity e dados protegidos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h1>🎁</h1>
+                        <h5>Saldo Inicial</h5>
+                        <p>Comece com $10.000 virtuais para praticar trading sem risco.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ← CTA SECTION *@
+    <div class="bg-primary text-white py-5">
+        <div class="container text-center">
+            <h2>🚀 Pronto para começar?</h2>
+            <p class="lead">Junte-se a milhares de investidores que já usam o TradeWise!</p>
+            <a asp-controller="Account" asp-action="Register" class="btn btn-light btn-lg">
+                📝 Criar Conta Agora
+            </a>
+        </div>
+    </div>
+}

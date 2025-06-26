@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TradeWise.API.DTOs
+namespace TradeWise.Web.DTOs
 {
     public class RegisterDto
     {
