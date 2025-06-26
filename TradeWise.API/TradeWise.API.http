@@ -1,0 +1,6 @@
+@TradeWise.API_HostAddress = http://localhost:5032
+
+GET {{TradeWise.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
