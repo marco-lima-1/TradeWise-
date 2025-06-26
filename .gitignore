@@ -319,6 +319,9 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio
 
-# Markdown files (documentation)
+# Markdown files (documentation)  
 *.md
-!README.template.md 
+!README.template.md
+
+# License file
+LICENSE 
