@@ -27,7 +27,7 @@ namespace TradeWise.Web.Data
             {
                 entity.HasIndex(e => e.Email).IsUnique();
                 entity.Property(e => e.Balance).HasDefaultValue(10000m);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("NOW()");
             });
 
             // Configurações da entidade Asset
@@ -35,8 +35,8 @@ namespace TradeWise.Web.Data
             {
                 entity.HasIndex(e => e.Symbol).IsUnique();
                 entity.HasIndex(e => e.CoinGeckoId).IsUnique();
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
-                entity.Property(e => e.LastUpdated).HasDefaultValueSql("GETUTCDATE()");
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("NOW()");
+                entity.Property(e => e.LastUpdated).HasDefaultValueSql("NOW()");
             });
 
             // Configurações da entidade Order
@@ -44,7 +44,7 @@ namespace TradeWise.Web.Data
             {
                 entity.HasIndex(e => new { e.UserId, e.CreatedAt });
                 entity.HasIndex(e => new { e.AssetId, e.Status });
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("NOW()");
                 
                 // Relacionamentos
                 entity.HasOne(e => e.User)
@@ -62,8 +62,8 @@ namespace TradeWise.Web.Data
             builder.Entity<Portfolio>(entity =>
             {
                 entity.HasIndex(e => new { e.UserId, e.AssetId }).IsUnique();
-                entity.Property(e => e.FirstPurchaseAt).HasDefaultValueSql("GETUTCDATE()");
-                entity.Property(e => e.LastUpdated).HasDefaultValueSql("GETUTCDATE()");
+                entity.Property(e => e.FirstPurchaseAt).HasDefaultValueSql("NOW()");
+                entity.Property(e => e.LastUpdated).HasDefaultValueSql("NOW()");
                 
                 // Relacionamentos
                 entity.HasOne(e => e.User)
@@ -82,7 +82,7 @@ namespace TradeWise.Web.Data
             {
                 entity.HasIndex(e => new { e.UserId, e.CreatedAt });
                 entity.HasIndex(e => e.Type);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("NOW()");
                 
                 // Relacionamentos
                 entity.HasOne(e => e.User)
